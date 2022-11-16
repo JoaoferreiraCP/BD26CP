@@ -1,0 +1,69 @@
+Rode o script para a tabela Funcionário e implemente as seguintes consultas em SQL:
+
+1)	Selecionar todos os funcionários e todos os seus dados, com e sem *
+2)	Na sua opinião, seria possível implementar uma consulta em SQL de modo tal que eventuais tuplas duplicadas fossem removidas? Tente Select nome from funcionário. Use select distinct. Compare, interprete, discuta, pense e prossiga. 
+3)	Seria de interesse manter as tuplas duplicadas. Quando? Pra que? Interprete. 
+4)	E em álgebra, o que naturalmente aconteceria com as tuplas duplicadas? Interprete.
+5)	Uma tupla em SQL corresponde a um conjunto de dados ou a um elemento de um conjunto de dados? Quem é elemento e quem é conjunto? Isso faz toda a diferença na hora de implementar operações sobre elemento ou sobre conjunto (UNION, NOT IN, etc.). 
+Retorne:
+6)	Retorne o nome de todos os funcionários, seu estado de residência e seus respectivos salários. Ordene por estado (asc) e, em segundo, por salário (desc).
+7)	Retorne o maior, o menor  e a média dos salários de todos os funcionários.
+8)	Retorne o maior, o menor  e a média dos salários de todos os funcionários M e depois repita para as F. 
+Daria para apresentar os dois na mesma consulta? 
+Daria para apresentar em uma linha os dados dos homens e a segunda linha os das mulheres? 
+Daria para apresentar em colunas, mas tudo na mesma linha?
+9)	Retorne o a média salarial de todos os funcionários que tenham Teixeira no nome. Cuidado com a similaridade e com a case-sentitiveness.
+10)	Retorne um atributo MedSal com a média dos salários entre todos os funcionários.
+11)	Retorne um atributo SomaSal com a soma de todos os salários.
+12)	Retorne o salário do funcionário com o código = y (escolha).
+13)	Retorne o nome dos funcionários que moram em Santa Catarina (com tratamento adequado de string).
+14)	Retorne os funcionários com o código 1, 2, 4 e 6 apresentados na ordem alfabética decrescente.
+15)	Retorne um atributo QtdFuncMaster com a quantidade de funcionários que ganham entre 1000 e 2000.
+16)	Retorne um atributo MedIdade com a média entre as idades dos funcionários.
+17)	Retorne todos os funcionários cujo nome comece com a letra M e não terminem com Teixeira. Varie. 
+18)	Atualize a tabla funcionários. Por merecimento, aumente em 10% o salário de todos os funcionários que contenham Marcelo em qualquer parte do nome. Não esqueça que não deve importar a forma como o termo Marcelo está escrito. 
+19)	Estenda a consulta anterior. Aumente em mais 10% o salário dos Marcelos, caso o valor total, incluindo aquilo que vc já aumentou na consulta anterior, ainda não esteja na faixa entre 10.000 e 20.000.  
+20) Delete os registros cujo nome do funcionário contemple o termo Marcelo.  
+21) Delete todos os registros da tabela FUNC. 
+22) Altere o domínio do atributo FUNC.Codigo para passar a representar um auto-incremento. Caso não consigas alterar o domínio, drope a tabela e a recrie, dessa vez com o código sendo um auto-icremento.
+23) Adicione um check no atributo est_civil, que limite os possíveis caracteres a serem informados. 
+24) Reinsira os dados na tabela FUNC. Desta vez, não informe manualmente o valor para FUNC.Codigo, já que ele é de incremento automático.
+25) Adicione o atributo FUNC.dataAdmissao, do tipo date, utilizando o conceito de domain. Ele servirá para armazenar a data de ingresso de cada funcionário na carreira.
+26) Altere o domínio do atributo FUNC.nome para uma dimensão maior.
+27) Altere o nome do atributo FUNC.sexo para FUNC.genero.
+
+
+Create Table Func(
+Codigo 	Integer Not Null Primary Key, 
+   Nome 	Varchar(30) Not Null,
+   Salario 	Numeric(12,2),
+   Sexo 	char(1),
+   Idade 	Integer,
+   Uf 		char (2),
+   Cidade 	varchar (40) not null,
+   Est_Civil 	char (10));
+
+
+
+INSERT INTO FUNC 
+	VALUES (1, 'Rodrigo Teixeira Cardiloso', 1588, 'm', 25, 'sc', 'Lages', 'Solteiro');
+INSERT INTO FUNC 
+	VALUES (2, 'Maria Teixeira Joaquina', 2000, 'f', 23, 'pr', 'Pato Branco', 'Casado');
+INSERT INTO FUNC 
+	VALUES (4, 'Bastianzinho Benz e Silva', 1000, 'm', 55, 'pr', 'Curitiba', 'Casado');
+INSERT INTO FUNC 
+	VALUES (3, 'Ana Paulina Teixeirina', 4500, 'f', 34, 'sc', 'Florianópolis', 'Casado');
+INSERT INTO FUNC 
+	VALUES (5, 'Tonico Vampirino Alves', 1500, 'm', 25, 'sc', 'Sao Paulo', 'Solteiro');
+INSERT INTO FUNC 
+	VALUES (6, 'Jose de Deus Olivre', 2000, 'm', 35, 'ba', 'Savador', 'Casado');
+INSERT INTO FUNC 
+	VALUES (7, 'José Bolseiro', 1500, 'm', 30, 'sc', 'Biguaçu', 'Solteiro');
+INSERT INTO FUNC 
+	VALUES (8, 'Bilbo Sonaro Teixeira', 1000, 'm', 35, 'sc', 'Florianópolis', 'Casado');
+INSERT INTO FUNC 
+	VALUES (9, 'Jack Alambrado Afora', 1199, 'm', 35, 'rs', 'Nova Petrópolis', 'Solteiro');
+INSERT INTO FUNC 
+	VALUES (10, 'Jenuina Verginina Silasbileia', 1990, 'f', 35, 'rs', 'Bagé', 'Casado');
+INSERT INTO FUNC 
+	VALUES (11, 'Jucandré Teixeiré Bolson', 1999, 'm', 35, 'rr', 'Selvinha', 'Solteiro');
