@@ -32,28 +32,38 @@ Implemente consultas adicionais que explorem os conceitos vistos na primeira par
     group by cliente.nome having sum((itens.valorunitario-itens.desconto)*itens.quantidade) > 50000 ;
 
 
-Opera��es com UNION e NOT EXIST:
+Operações com UNION e NOT EXIST:
 
-�	Retorne o nome dos fabricantes que n�o produzem nenhum produto e de clientes que nunca compraram. 
-�	Retorne o nome dos fabricantes que produzem algum produto e de clientes que algum dia compraram
-�	Retorne o nome dos fabricantes que produzem algum produto e de clientes que algum dia compraram. Caso o fabricante e o cliente possuam o mesmo nome, duas consultas devem ser implementadas, uma apresentando os nomes duplicados, e outra n�o. 
-�	Fa�a a uni�o de duas consultas. A primeira deve retornar o n�mero de todas as notas sendo cada um acompanhado pelo nome do respectivo cliente. J� a segunda consulta deve retornar todos os c�digo de produto, acompanhados do respectivo nome. 
-�	Retorne o n�mero das notas fiscais que foram abertas, mas que ainda n�o possuem nenhum item alocado.  
-�	Retorne o n�mero das notas fiscais e do cliente da nota. Exclua da consulta aquelas notas que n�o possuem nenhum item alocado.
-�	Retorne o nome dos clientes que compraram entre x e y unidades de produtos. Implemente a consulta com e sem usar uni�o. 
-�	Retorne o nome dos clientes e dos fabricantes. O cliente deve ter comprado ao menos uma vez e o produto deve ter sido alocado a ao menos uma nota fiscal. 
+-	Retorne o nome dos fabricantes que não produzem nenhum produto e de clientes que nunca compraram. 
+    select fabricante.nome from fabricante where not exists (select fabricante.nome from produto where fabricante.pk_fab  = produto.fk_fab);
+    select cliente.nome from cliente where not exists (select cliente.nome from notafiscal  where cliente.pk_cliente  = notafiscal.fk_cliente);
 
+-	Retorne o nome dos fabricantes que produzem algum produto e de clientes que algum dia compraram
+    select fabricante.nome from produto, fabricante where fabricante.pk_fab  = produto.fk_fab group by fabricante.nome ;
+    select cliente.nome from notafiscal,cliente where cliente.pk_cliente  = notafiscal.fk_cliente group by cliente.nome ;
+ 
+-	Retorne o nome dos fabricantes que produzem algum produto e de clientes que algum dia compraram. Caso o fabricante e o cliente possuam o mesmo nome, duas consultas devem ser implementadas, uma apresentando os nomes duplicados, e outra não. 
+
+-	Faça a união de duas consultas. A primeira deve retornar o número de todas as notas sendo cada um acompanhado pelo nome do respectivo cliente. Já a segunda consulta deve retornar todos os código de produto, acompanhados do respectivo nome. 
+
+-	Retorne o número das notas fiscais que foram abertas, mas que ainda não possuem nenhum item alocado.  
+
+-	Retorne o número das notas fiscais e do cliente da nota. Exclua da consulta aquelas notas que não possuem nenhum item alocado.
+
+-	Retorne o nome dos clientes que compraram entre x e y unidades de produtos. Implemente a consulta com e sem usar uniço. 
+
+-	Retorne o nome dos clientes e dos fabricantes. O cliente deve ter comprado ao menos uma vez e o produto deve ter sido alocado a ao menos uma nota fiscal. 
 
 
 
 
 Opera��es com JOINS: 
 
-�	Retorne o nome e o endere�o do fabricante e o nome dos produtos que ele produz. Se n�o fabrica nenhum produto, o fabricante n�o deve ser mostrado
-�	Retorne o nome e o endere�o de todos os fabricantes e o nome dos produtos que ele eventualmente produz. 
-�	Retorne o nome e o endere�o de todos os fabricantes e o nome dos produtos que ele eventualmente produz. Implemente usando full join e explique se houve alguma diferen�a em rela��o � abordagem usada para implementar o SQL anterior. 
-�	Retorne uma lista com os nomes de todos os clientes e o n�mero das notas fiscais que porventura tenham sido lan�adas em seu nome.
-�	Retorne uma lista com os nomes dos clientes para os quais uma nota fiscal tenha sido lan�ada.
-�	Retorne uma lista com os nomes dos clientes para os quais uma nota fiscal tenha sido lan�ada no �ltimo ano.
+-	Retorne o nome e o endereço do fabricante e o nome dos produtos que ele produz. Se não fabrica nenhum produto, o fabricante n�o deve ser mostrado
+-	Retorne o nome e o endereço de todos os fabricantes e o nome dos produtos que ele eventualmente produz. 
+-	Retorne o nome e o endereço de todos os fabricantes e o nome dos produtos que ele eventualmente produz. Implemente usando full join e explique se houve alguma diferen�a em rela��o � abordagem usada para implementar o SQL anterior. 
+-	Retorne uma lista com os nomes de todos os clientes e o n�mero das notas fiscais que porventura tenham sido lan�adas em seu nome.
+-	Retorne uma lista com os nomes dos clientes para os quais uma nota fiscal tenha sido lan�ada.
+-	Retorne uma lista com os nomes dos clientes para os quais uma nota fiscal tenha sido lan�ada no �ltimo ano.
 
 Teste o uso de cada tipo de join, em cada um dos SQL acima. Substitua os joins, altere a ordem da jun��o e interprete os resultados.  
